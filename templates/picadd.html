@@ -1,0 +1,48 @@
+{% extends "templates/basepage.html" %}
+{% block navigator %}
+<a  href="/group">图库管理</a> >> <a href="/piclist?groupid={{group.key().id()}}">{{group.group}}</a>
+ >> <a href="#">图片上传</a> >> <a href="javascript:history.back(-1);">后退</a>
+{% endblock %}
+{% block content %}
+<style type="text/css">
+    .img{
+        width: 100px;
+        border: 0px;
+    }
+</style>
+        <form action="/picadd" method="post" enctype="multipart/form-data">
+<table id="contentList" width="90%"   border="0" cellpadding=1 cellspacing=1 bgcolor="#D5E3E6" >
+<tr class="STYLE1">
+	<td align="right" colspan="3">
+
+
+
+	</td>
+</tr>
+<tr class="STYLE1">
+<td align="center">图片组</td>
+<td align="center"><select name="group" style="width: 120px;">
+    {%for g in grouplist%}
+    <option value="{{g.key().id()}}"  {%if groupid ==g.key().id() %}selected{%endif%}>{{g.group}}</option>
+    {%endfor%}
+</select></td>
+</tr>
+<tr class="STYLE1">
+<td align="center">图片</td>
+<td align="center"><input type="file" name="pic" style="width: 120px;"></td>
+</tr>
+<tr class="STYLE1">
+<td align="center"></td>
+<td align="center"><input type="submit" value="上传"><input type="hidden" name="imgid" value="{{imgid}}"></td>
+</tr>
+<tr class="STYLE1">
+<td align="center" colspan="2">{%if imgid%}<img src="/picshow?imgid={{imgid}}" alt="" border="0">{%endif%}</td>
+</tr>
+
+<tr bgcolor="#ffffff"  height="25">
+	<td colspan="9" align="right" >
+	</td>
+</tr>
+</table>
+            </form>
+{% endblock %}

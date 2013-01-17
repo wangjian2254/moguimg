@@ -1,0 +1,37 @@
+{% extends "templates/basepage.html" %}
+{% block navigator %}
+<a  href="/group">图库管理</a>
+ >> <a href="#">添加图片组</a> >> <a href="javascript:history.back(-1);">后退</a>
+{% endblock %}
+{% block content %}
+
+<table id="contentList" width="90%"   border="0" cellpadding=1 cellspacing=1 bgcolor="#D5E3E6" >
+<tr class="STYLE1">
+	<td align="right" colspan="4">
+    <form action="/group" method="post">
+       图片组名称：<input type="text" name="group" value="{{group}}" style="width: 100px;"><input type="submit" value="{% if updateid==None %}添加{%else%}保存{%endif%}">
+        <input type="hidden" name="id" value="{{updateid}}">
+    </form>
+	</td>
+</tr>
+<tr class="STYLE1">
+<td align="center"><strong>id</strong></td>
+<td align="center"><strong>图片组名称</strong></td>
+<td align="center"><strong>图库</strong></td>
+<td align="center"><strong>操作</strong></td>
+
+</tr>
+{%for group in grouplist%}
+<tr class="STYLE1" style="cursor:hand" onClick="SelectTR(this);" onMouseOver="cells_color(this,1);" onMouseOut="cells_color(this,2);">
+<td align="center">{{group.key().id()}}</td>
+<td align="center"><a href="/piclist?groupid={{group.key().id()}}" >{{group.group}}</a></td>
+<td align="center">{{group.lib}}</td>
+<td align="center"><a href="/picadd?groupid={{group.key().id()}}">添加图片</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/group?groupid={{group.key().id()}}">修改组名</a></td>
+</tr>
+{%endfor%}
+<tr bgcolor="#ffffff"  height="25">
+	<td colspan="9" align="right" >
+	</td>
+</tr>
+</table>
+{% endblock %}
