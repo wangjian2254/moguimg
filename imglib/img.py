@@ -89,6 +89,23 @@ class ShowImg(Page):
 class DownImg(Page):
     def get(self):
         imgid=self.request.get("image_id")
+        if imgid:
+            imgidlist=imgid.split('_')
+            if (len(imgidlist)==3 or len(imgidlist)==4) and imgidlist[-1] in ['11','12','31','41']:
+                if imgidlist[0] in ['min','daily','weekly','monthly']:
+                    self.response.headers['Content-Type'] = "text/html"
+                    if imgidlist[-1]=='41':
+                        self.response.out.write('http://image.sinajs.cn/newchart/usstock/%s/%s.gif'%(imgidlist[0],imgidlist[-2]))
+                        return
+                    elif imgidlist[-1]=='31':
+                        self.response.out.write('http://image.sinajs.cn/newchart/hk_stock/%s/%s.gif'%(imgidlist[0],imgidlist[-2][2:]))
+                        return
+                    elif imgidlist[-1] in ['11','12']:
+                        self.response.out.write('http://image.sinajs.cn/newchart/%s/n/%s.gif'%(imgidlist[0],imgidlist[-2]))
+                        return
+                    else:
+                        self.error(500)
+                        return
         if not imgid or imgid[0]=='0':
             self.error(500)
             return
