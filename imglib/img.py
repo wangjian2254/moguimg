@@ -95,13 +95,26 @@ class DownImg(Page):
                 if imgidlist[0] in ['min','daily','weekly','monthly']:
                     self.response.headers['Content-Type'] = "text/html"
                     if imgidlist[-1]=='41':
-                        self.response.out.write('http://image.sinajs.cn/newchart/usstock/%s/%s.gif'%(imgidlist[0],imgidlist[-2]))
+#                        self.response.out.write('http://image.sinajs.cn/newchart/usstock/%s/%s.gif'%(imgidlist[0],imgidlist[-2]))
+                        if 'min'==imgidlist[0]:
+                            self.response.out.write('http://image.sinajs.cn/newchart/v5/usstock/wap/min_daily/310/%s.gif'%(imgidlist[-2],))
+                        if 'daily'==imgidlist[0]:
+                            self.response.out.write('http://image.sinajs.cn/newchart/v5/usstock/wap/min_week/310/%s.gif'%(imgidlist[-2],))
                         return
                     elif imgidlist[-1]=='31':
-                        self.response.out.write('http://image.sinajs.cn/newchart/hk_stock/%s/%s.gif'%(imgidlist[0],imgidlist[-2][2:]))
+#                        self.response.out.write('http://image.sinajs.cn/newchart/hk_stock/%s/%s.gif'%(imgidlist[0],imgidlist[-2][2:]))
+                        if 'min'==imgidlist[0]:
+                            self.response.out.write('http://r3.sinaimg.cn/3g/static/images/finance/hkstock/wap_min5/%s.gif'%(imgidlist[-2][2:],))
+                        if 'daily'==imgidlist[0]:
+                            self.response.out.write('http://r3.sinaimg.cn/3g/static/images/finance/hkstock/daily_wap5/%s.gif'%(imgidlist[-2][2:],))
+
                         return
                     elif imgidlist[-1] in ['11','12']:
-                        self.response.out.write('http://image.sinajs.cn/newchart/%s/n/%s.gif'%(imgidlist[0],imgidlist[-2]))
+#                        self.response.out.write('http://image.sinajs.cn/newchart/%s/n/%s.gif'%(imgidlist[0],imgidlist[-2]))
+                        if 'min'==imgidlist[0]:
+                            self.response.out.write('http://r3.sinaimg.cn/3g/static/images/finance/stock/daily2/3g/big/%s.gif'%(imgidlist[-2],))
+                        if 'daily'==imgidlist[0]:
+                            self.response.out.write('http://r3.sinaimg.cn/3g/static/images/finance/stock/k/daily2/3g/big/%s.gif'%(imgidlist[-2],))
                         return
                     else:
                         self.error(500)
