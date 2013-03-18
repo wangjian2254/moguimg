@@ -106,17 +106,17 @@ class DownImg(Page):
                     elif imgidlist[-1]=='31':
 #                        self.response.out.write('http://image.sinajs.cn/newchart/hk_stock/%s/%s.gif'%(imgidlist[0],imgidlist[-2][2:]))
                         if 'min'==imgidlist[0]:
-                            self.response.out.write('http://r3.sinaimg.cn/3g/static/images/finance/hkstock/wap_min5/%s.gif?r=%s'%(imgidlist[-2][2:],datetime.datetime.now().strftime('%Y%m%d%H%M')))
+                            self.response.out.write('http://image.sinajs.cn/newchart/hk_stock/wap_min5/%s.gif?r=%s'%(imgidlist[-2][2:],datetime.datetime.now().strftime('%Y%m%d%H%M')))
                         if 'daily'==imgidlist[0]:
-                            self.response.out.write('http://r3.sinaimg.cn/3g/static/images/finance/hkstock/daily_wap5/%s.gif?r=%s'%(imgidlist[-2][2:],datetime.datetime.now().strftime('%Y%m%d%H%M')))
+                            self.response.out.write('http://image.sinajs.cn/newchart/hk_stock/daily_wap5/%s.gif?r=%s'%(imgidlist[-2][2:],datetime.datetime.now().strftime('%Y%m%d%H%M')))
 
                         return
                     elif imgidlist[-1] in ['11','12']:
 #                        self.response.out.write('http://image.sinajs.cn/newchart/%s/n/%s.gif'%(imgidlist[0],imgidlist[-2]))
                         if 'min'==imgidlist[0]:
-                            self.response.out.write('http://r3.sinaimg.cn/3g/static/images/finance/stock/daily2/3g/big/%s.gif?r=%s'%(imgidlist[-2],datetime.datetime.now().strftime('%Y%m%d%H%M')))
+                            self.response.out.write('http://image.sinajs.cn/newchart/wap/cn_min_other/min_wap/3g/big/%s.gif?r=%s'%(imgidlist[-2],datetime.datetime.now().strftime('%Y%m%d%H%M')))
                         if 'daily'==imgidlist[0]:
-                            self.response.out.write('http://r3.sinaimg.cn/3g/static/images/finance/stock/k/daily2/3g/big/%s.gif?r=%s'%(imgidlist[-2],datetime.datetime.now().strftime('%Y%m%d%H%M')))
+                            self.response.out.write('http://image.sinajs.cn/newchart/wap/cn_kline/daily_wap/3g/big/%s.gif?r=%s'%(imgidlist[-2],datetime.datetime.now().strftime('%Y%m%d%H%M')))
                         return
                     else:
                         self.error(500)
